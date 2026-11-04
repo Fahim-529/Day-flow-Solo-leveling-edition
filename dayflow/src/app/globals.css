@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 221.2 83.2% 53.3%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+/* ==========================================================================
+   HUNTER THEME — Solo Leveling "System" look.
+   Pure presentation layer: it only restyles existing components through
+   CSS variables and hook classes (.sl-panel, .sl-btn, .sl-badge, .sl-input,
+   .sl-bar). No scheduling, recovery, PDF or storage logic is touched.
+   ========================================================================== */
+@layer base {
+  .hunter {
+    --background: 226 60% 4%;
+    --foreground: 195 60% 94%;
+    --card: 224 55% 8%;
+    --card-foreground: 195 60% 94%;
+    --popover: 224 55% 8%;
+    --popover-foreground: 195 60% 94%;
+    --primary: 192 100% 52%;
+    --primary-foreground: 226 60% 6%;
+    --secondary: 224 45% 14%;
+    --secondary-foreground: 195 60% 92%;
+    --muted: 224 45% 12%;
+    --muted-foreground: 205 28% 66%;
+    --accent: 224 60% 16%;
+    --accent-foreground: 192 100% 80%;
+    --destructive: 350 85% 52%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 200 70% 28%;
+    --input: 200 70% 34%;
+    --ring: 192 100% 60%;
+    --radius: 0.25rem;
+    --sl-glow: 0 0 12px hsl(192 100% 52% / 0.35);
+    --sl-purple: 268 85% 62%;
+  }
+}
+
+.hunter body {
+  background:
+    radial-gradient(ellipse 80% 50% at 15% -10%, hsl(268 85% 30% / 0.28), transparent 60%),
+    radial-gradient(ellipse 70% 45% at 100% 0%, hsl(192 100% 40% / 0.18), transparent 55%),
+    linear-gradient(hsl(200 90% 50% / 0.035) 1px, transparent 1px) 0 0 / 100% 36px,
+    linear-gradient(90deg, hsl(200 90% 50% / 0.035) 1px, transparent 1px) 0 0 / 36px 100%,
+    hsl(var(--background));
+  background-attachment: fixed;
+  letter-spacing: 0.01em;
+}
+
+/* Soft CRT scanlines over everything, non-interactive */
+.hunter body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  background: repeating-linear-gradient(0deg, hsl(0 0% 0% / 0.07) 0 1px, transparent 1px 3px);
+  opacity: 0.5;
+}
+
+.hunter h1, .hunter h2, .hunter h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 10px hsl(192 100% 52% / 0.45);
+}
+
+/* Holographic window with corner brackets */
+.hunter .sl-panel {
+  position: relative;
+  background: linear-gradient(160deg, hsl(222 60% 11% / 0.78), hsl(228 60% 6% / 0.82));
+  border: 1px solid hsl(195 95% 50% / 0.4);
+  box-shadow: inset 0 0 22px hsl(192 100% 50% / 0.07), var(--sl-glow);
+  backdrop-filter: blur(6px);
+  border-radius: 2px;
+  animation: sl-in 0.35s ease-out both;
+}
+.hunter .sl-panel::before,
+.hunter .sl-panel::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  border: 2px solid hsl(192 100% 62%);
+  filter: drop-shadow(0 0 4px hsl(192 100% 60%));
+}
+.hunter .sl-panel::before { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+.hunter .sl-panel::after  { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+
+/* Sidebar becomes the System menu */
+.hunter aside {
+  background: linear-gradient(180deg, hsl(226 60% 6% / 0.95), hsl(232 60% 4% / 0.97));
+  border-right: 1px solid hsl(195 95% 50% / 0.35);
+  box-shadow: 0 0 24px hsl(192 100% 50% / 0.12);
+}
+
+/* Buttons */
+.hunter .sl-btn {
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  transition: box-shadow 0.15s, background-color 0.15s, transform 0.1s;
+}
+.hunter .sl-btn:hover { box-shadow: 0 0 14px hsl(192 100% 55% / 0.5); }
+.hunter .sl-btn:active { transform: translateY(1px); }
+.hunter .sl-btn.bg-primary {
+  background: linear-gradient(135deg, hsl(192 100% 50%), hsl(210 100% 52%));
+  box-shadow: 0 0 12px hsl(192 100% 55% / 0.45);
+}
+.hunter .sl-btn.bg-destructive {
+  background: linear-gradient(135deg, hsl(350 85% 48%), hsl(335 80% 40%));
+  box-shadow: 0 0 10px hsl(350 85% 50% / 0.4);
+}
+.hunter .sl-btn.border { border-color: hsl(195 95% 55% / 0.55); background: hsl(224 55% 9% / 0.6); }
+
+/* Status badges read like System tags */
+.hunter .sl-badge {
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-color: hsl(195 95% 55% / 0.5);
+}
+.hunter .sl-badge.bg-primary { background: hsl(192 100% 50% / 0.18); color: hsl(192 100% 75%); }
+
+.hunter .sl-input, .hunter select, .hunter textarea {
+  border-radius: 2px;
+  background: hsl(224 55% 7% / 0.8);
+  border-color: hsl(195 95% 50% / 0.45);
+  color: hsl(var(--foreground));
+}
+.hunter .sl-input:focus-visible, .hunter select:focus-visible, .hunter textarea:focus-visible {
+  box-shadow: 0 0 0 1px hsl(192 100% 60%), 0 0 12px hsl(192 100% 55% / 0.45);
+  outline: none;
+}
+
+/* Progress = EXP bar */
+.hunter .sl-bar {
+  border-radius: 2px;
+  height: 0.75rem;
+  background: hsl(224 55% 6%);
+  border-color: hsl(195 95% 50% / 0.45);
+}
+.hunter .sl-bar-fill {
+  position: relative;
+  min-height: 100%;
+  border-radius: 1px;
+  background: linear-gradient(90deg, hsl(268 85% 58%), hsl(192 100% 55%));
+  box-shadow: 0 0 12px hsl(192 100% 55% / 0.7);
+  transition: width 0.6s ease;
+}
+.hunter .sl-bar-fill span { display: none; }
+
+/* Light-only utility colours used in a few pages -> readable on dark glass */
+.hunter .bg-amber-50\/50, .hunter .bg-amber-50\/30, .hunter .bg-amber-50 { background-color: hsl(40 95% 50% / 0.08); }
+.hunter .bg-amber-100\/50, .hunter .bg-amber-100 { background-color: hsl(40 95% 50% / 0.14); }
+.hunter .bg-emerald-50, .hunter .bg-emerald-100, .hunter .bg-green-50\/50, .hunter .bg-green-100 { background-color: hsl(160 85% 40% / 0.14); }
+.hunter .bg-rose-50, .hunter .bg-rose-100 { background-color: hsl(350 85% 50% / 0.14); }
+.hunter .bg-indigo-100 { background-color: hsl(268 85% 60% / 0.18); }
+.hunter .border-amber-200, .hunter .border-green-100 { border-color: hsl(195 95% 50% / 0.3); }
+.hunter .text-amber-800, .hunter .text-amber-600 { color: hsl(40 100% 68%); }
+.hunter .text-emerald-800, .hunter .text-emerald-700, .hunter .text-emerald-600, .hunter .text-green-800 { color: hsl(160 90% 62%); }
+.hunter .text-rose-800 { color: hsl(350 100% 75%); }
+.hunter .text-indigo-800 { color: hsl(268 100% 80%); }
+
+/* System notification toast / dialogs */
+.hunter [role='alert'] > div, .hunter [role='dialog'] > div {
+  border: 1px solid hsl(195 95% 55% / 0.5);
+  box-shadow: var(--sl-glow);
+}
+.hunter ::selection { background: hsl(192 100% 50% / 0.35); }
+.hunter ::-webkit-scrollbar { width: 8px; }
+.hunter ::-webkit-scrollbar-thumb { background: hsl(192 100% 45% / 0.5); border-radius: 2px; }
+.hunter ::-webkit-scrollbar-track { background: hsl(226 60% 5%); }
+
+@keyframes sl-in {
+  0%   { opacity: 0; transform: translateY(6px) scale(0.99); filter: brightness(1.8); }
+  60%  { opacity: 1; filter: brightness(1.2); }
+  100% { opacity: 1; transform: none; filter: none; }
+}
+@keyframes sl-pulse {
+  0%, 100% { box-shadow: 0 0 8px hsl(192 100% 55% / 0.45); }
+  50%      { box-shadow: 0 0 18px hsl(268 85% 62% / 0.7); }
+}
+.hunter .sl-pulse { animation: sl-pulse 2.4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hunter .sl-panel, .hunter .sl-pulse { animation: none; }
+  .hunter .sl-bar-fill { transition: none; }
+}
+
+/* Elements that only exist in the Hunter look */
+.sl-only { display: none; }
+.hunter .sl-only { display: block; }
+.hunter .sl-hide { display: none; }
+.hunter span.sl-only { display: inline; }
